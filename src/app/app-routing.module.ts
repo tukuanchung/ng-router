@@ -12,7 +12,7 @@ const routes: Routes = [
       component:LayoutComponent,
       children:[
        { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
-       { path: 'dashboard', component: DashboardComponent },
+       { path: 'dashboard', component: DashboardComponent, data: {pageTitle: 'Dashboard'} },
        { path: 'tables', component: TablesComponent },
        { path: 'tables/:name', component: TablesComponent },
     ]

@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   templateUrl: './dashboard.component.html',
@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
   router = inject(Router);
+  route = inject(ActivatedRoute);
 
   ngOnInit(): void {
     const chartAreaScript = document.createElement('script');
@@ -16,10 +17,16 @@ export class DashboardComponent implements OnInit {
     const chartPieScript = document.createElement('script');
     chartAreaScript.src = "assets/js/demo/chart-pie-demo.js";
     document.body.appendChild(chartPieScript);
+
+    this.route.data.subscribe((data) => {
+      console.log(data['pageTitle']);
+    });
+
   }
   gotoPage(pageName:string, name: string, id: number): void{
     this.router.navigate([`${pageName}/${name}`],{
         queryParams: {id: id},
+        //state:{id:id}, 可以代到下一頁頁面
     });
   }
 }
