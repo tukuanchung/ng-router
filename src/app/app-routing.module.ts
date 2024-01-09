@@ -14,9 +14,14 @@ const routes: Routes = [
        { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
        { path: 'dashboard', component: DashboardComponent, data: {pageTitle: 'Dashboard'} },
        { path: 'tables', component: TablesComponent },
-       { path: 'tables/:name', component: TablesComponent },
+      //  { path: 'tables/:name', component: TablesComponent },
+       { path: 'tables',
+         loadChildren: () =>
+           import('./pages/tables/tables.module').then(m => m.TablesModule)
+      },
     ]
   },
+
   // { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
   // { path: 'dashboard', component: DashboardComponent },
   // { path: 'tables', component: TablesComponent },
