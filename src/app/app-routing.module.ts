@@ -6,12 +6,15 @@ import { LayoutComponent } from './pages/layout/layout.component';
 
 const routes: Routes = [
     {
+      //子component會套用到上層component所以
+      //DashboardComponent做完會套用到LayoutComponent，做完會在套用Appcomponent
       path: '',
       component:LayoutComponent,
       children:[
        { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
        { path: 'dashboard', component: DashboardComponent },
        { path: 'tables', component: TablesComponent },
+       { path: 'tables/:name', component: TablesComponent },
     ]
   },
   // { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
