@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     // 替代寫法，當資料在ts還是會改變就要用下面的寫法
     this.newsSubscription = this.data.loadNews().subscribe((data)=>{
-      this.news = data.news;
+      this.news = data;
     });
 
 
