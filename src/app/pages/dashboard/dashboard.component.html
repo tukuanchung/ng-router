@@ -1,7 +1,10 @@
-<pre>{{ news$ | async | json }}</pre>
+<!-- <pre>{{ news$ | async | json }}</pre> -->
 <ol>
-  <li *ngFor="let item of (news$ | async)!.news">
+  <!-- <li *ngFor="let item of (news$ | async)!.news">
     {{ item.title}}
+  </li> -->
+  <li *ngFor="let item of news">
+    {{ item.title }}
   </li>
 </ol>
 <!-- Page Heading -->
