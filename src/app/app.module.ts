@@ -7,6 +7,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LayoutComponent } from './pages/layout/layout.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AuthInterceptor } from './auth.interceptor';
+import { apiUrl } from 'src/environments/environments';
 
 export const API_URL = new InjectionToken<string>('apiUrl')
 
@@ -17,8 +18,10 @@ export const API_URL = new InjectionToken<string>('apiUrl')
     LayoutComponent,
     LoginComponent
   ],
+  // DI注入語法
   providers:[
-    {provide: API_URL, useValue: 'http://localhost:4200'},
+    // {provide: API_URL, useValue: 'http://localhost:4200'},
+    {provide: API_URL, useValue: apiUrl},
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   imports: [
