@@ -8,7 +8,8 @@ import { LayoutComponent } from './pages/layout/layout.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AuthInterceptor } from './auth.interceptor';
 import { apiUrl } from 'src/environments/environments';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Login2Component } from './pages/login2/login2.component';
 
 export const API_URL = new InjectionToken<string>('apiUrl')
 
@@ -17,7 +18,8 @@ export const API_URL = new InjectionToken<string>('apiUrl')
     AppComponent,
     DashboardComponent,
     LayoutComponent,
-    LoginComponent
+    LoginComponent,
+    Login2Component
   ],
   // DI注入語法
   providers:[
@@ -29,7 +31,7 @@ export const API_URL = new InjectionToken<string>('apiUrl')
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule, ReactiveFormsModule
   ],
   bootstrap: [AppComponent]
 })
