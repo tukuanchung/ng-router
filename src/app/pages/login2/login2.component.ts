@@ -21,7 +21,7 @@ export class Login2Component implements OnInit{
       updateOn: 'blur'
     }),
     password: this.fb.control('',{
-      validators:[Validators.required, Validators.minLength(6)]
+      validators:[Validators.required, Validators.minLength(4)]
     }),
     remember: this.fb.control(true),
   });
