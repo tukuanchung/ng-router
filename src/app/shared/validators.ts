@@ -1,4 +1,7 @@
 import { AbstractControl, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { ValidationErrors, AsyncValidatorFn } from '@angular/forms';
+import { Observable, of } from 'rxjs';
 import { isNationalIdentificationNumberValid } from 'taiwan-id-validator2';
 
 export function 身份證字號驗證器(control: AbstractControl) {
@@ -19,3 +22,15 @@ export function 身份證字號驗證器(control: AbstractControl) {
   return isValid ? null : { 本案專用的密碼複雜度檢查: true };
 }
 
+export function 檢查Email是否重複(http: HttpClient): AsyncValidatorFn {
+  return (control: AbstractControl): Observable<ValidationErrors | null> => {
+    const value = control.value;
+
+    if (!value) {
+      return of(null);
+    }
+
+    // return http.get<any>('https://webhook.site/6551f50e-4870-43a8-ac62-e9ebf219505d');
+    return http.get<any>('https://webhook.site/');
+  };
+}
