@@ -13,14 +13,19 @@
                   <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                 </div>
                 <pre>{{ form.value | json}}</pre>
-                <form class="user" [formGroup]="form" (ngSubmit)="doSubmit()">
+                <form class="user" [formGroup]="form" (ngSubmit)="doSubmit()" #f="ngForm">
                   <div class="form-group">
+                    <pre>{{form.controls.name.errors | json}}</pre>
                     <input type="text"
                       formControlName="name"
                       class="form-control form-control-user"
                       placeholder="請輸入您的大名">
-                           <span style="color:red" *ngIf="form.controls.name.invalid && form.controls.name.errors!['required']">
-                            請輸入您的大名</span>
+                      <span style="color: red"
+                        *ngIf="
+                          f.submitted
+                          && form.controls.name.invalid
+                          && form.controls.name.errors!['身份證字號驗證器']
+                        ">請輸入您的大名</span>
                   </div>
                   <div formArrayName="addresses">
                     <ng-container *ngFor="let addressGroup of form.controls.addresses.controls; let i=index">
@@ -37,6 +42,7 @@
                           formControlName="address1" placeholder="請輸入您的地址 1">
                         </div>
                         <div class="form-group">
+                          <pre>{{addressGroup.controls.address2.errors | json}}</pre>
                           <input type="text" class="form-control form-control-user"
                           formControlName="address2" placeholder="請輸入您的地址 2">
                         </div>
