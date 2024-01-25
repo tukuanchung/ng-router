@@ -12,14 +12,18 @@
                 <div class="text-center">
                   <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                 </div>
-                <pre>{{ form.value | json}}</pre>
+                <pre>{{ form.value | json }}</pre>
                 <form class="user" [formGroup]="form" (ngSubmit)="doSubmit()" #f="ngForm">
                   <div class="form-group">
                     <pre>{{form.controls.name.errors | json}}</pre>
-                    <input type="text"
-                      formControlName="name"
-                      class="form-control form-control-user"
-                      placeholder="請輸入您的大名">
+                    <input type="text" class="form-control form-control-user"
+                      formControlName="name" placeholder="請輸入您的大名">
+                      <span style="color: red"
+                        *ngIf="
+                          f.submitted
+                          && form.controls.name.invalid
+                          && form.controls.name.errors!['required']
+                        ">請輸入您的大名</span>
                       <span style="color: red"
                         *ngIf="
                           f.submitted
@@ -27,8 +31,12 @@
                           && form.controls.name.errors!['身份證字號驗證器']
                         ">請輸入您的大名</span>
                   </div>
+
                   <div formArrayName="addresses">
-                    <ng-container *ngFor="let addressGroup of form.controls.addresses.controls; let i=index">
+                    <ng-container *ngFor="
+                      let addressGroup of form.controls.addresses.controls;
+                      let i=index
+                      ">
                       <div class="form-group">
                         居住地址 {{i+1}}
                       </div>
@@ -49,6 +57,7 @@
                       </div>
                     </ng-container>
                   </div>
+
                   <button type="submit" class="btn btn-primary btn-user btn-block"> Login </button>
                   <hr>
                   <button type="button" class="btn btn-google btn-user btn-block"
